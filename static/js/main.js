@@ -1,0 +1,1 @@
+function handleRefresh() {globalThis.location.reload();}

@@ -21,7 +21,7 @@ async def root(request: Request):
     response = templates.TemplateResponse(
         request=request,
         name="index.html",
-        context={"request": request, "instance_index": instance_index}
+        context={"instance_index": instance_index}
     )
 
     # Clear des headers

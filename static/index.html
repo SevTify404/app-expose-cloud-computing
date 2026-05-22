@@ -6,6 +6,7 @@
     <title>Cloud Foundry — Exposé Cloud Computing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Figtree:ital,wght@0,300;0,400;0,600;1,300&display=swap"
           rel="stylesheet"/>
     <link rel="stylesheet" href="/static/css/styles.css">
@@ -40,25 +41,18 @@
                 </div>
                 <div class="hero-meta">
                     <div class="hero-meta-item">
-                        <span class="meta-label">Thème</span>
-                        <span class="meta-value">Architecture PaaS</span>
+                        <span class="meta-label">Cours</span>
+                        <span class="meta-value">Cloud Computing</span>
                     </div>
                     <div class="meta-sep"></div>
                     <div class="hero-meta-item">
-                        <span class="meta-label">Technologie</span>
+                        <span class="meta-label">Techno</span>
                         <span class="meta-value">Cloud Foundry</span>
                     </div>
                     <div class="meta-sep"></div>
                     <div class="hero-meta-item">
                         <span class="meta-label">Exposants</span>
                         <span class="meta-value">03</span>
-                    </div>
-                    <div class="meta-sep"></div>
-                    <div class="hero-meta-item instance-meta-item" title="Index de l'instance Cloud Foundry active sur laquelle vous êtes connecté.">
-                        <span class="meta-label">Instance Active</span>
-                        <span class="meta-value pulse-text">
-                            Instance <span class="instance-number-highlight">#{{ instance_index }}</span>
-                        </span>
                     </div>
                 </div>
             </div>
@@ -67,6 +61,44 @@
                 <div class="logo-container">
                     <div class="logo-glow"></div>
                     <img src="/static/images/cloud_foundry.png" alt="Cloud Foundry Logo" class="logo-img">
+                </div>
+
+                <div class="instance-dashboard">
+                    <div class="db-header">
+                        <div class="db-status">
+                            <span class="db-status-dot"></span>
+                            <span class="db-status-text">MONITEUR EN DIRECT</span>
+                        </div>
+                        <div class="db-pill">Gorouter</div>
+                    </div>
+
+                    <div class="db-main">
+                        <span class="db-label">id de l'Instance actuelle</span>
+                        <div class="db-number">
+                            <span class="db-hash">#</span>
+                            <span class="db-value">{{ instance_index }}</span>
+                        </div>
+                    </div>
+
+                    <div class="db-metrics">
+                        <div class="db-metric">
+                            <span class="metric-name">Serveur</span>
+                            <span class="metric-val status-active">
+                                <span class="db-status-dot" style="animation-duration: 0.6s;"></span>En ligne
+                            </span>
+                        </div>
+                        <div class="db-metric">
+                            <span class="metric-name">Load-Balancing</span>
+                            <span class="metric-val">Round-Robin</span>
+                        </div>
+                    </div>
+
+                    <button class="db-refresh-btn" onclick="handleRefresh()">
+                        <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                        <span>Reload la page</span>
+                    </button>
                 </div>
             </div>
         </div>
