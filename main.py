@@ -9,3 +9,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 async def root():
     return FileResponse("static/index.html")
+
+
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse("static/cloud_foundry.png")
+
