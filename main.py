@@ -13,5 +13,5 @@ async def root():
 
 @app.get("/favicon.ico")
 async def favicon():
-    return FileResponse("static/cloud_foundry.png")
+    return FileResponse("static/images/cloud_foundry.png")
 
