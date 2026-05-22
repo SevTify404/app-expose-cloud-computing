@@ -504,3 +504,134 @@ body::before {
 
     .hero-meta { gap: 1.4rem; }
 }
+
+/* ══════════════════════════
+   DYNAMIC CF INSTANCE STYLES (OPTIMIZED & ENHANCED)
+   ══════════════════════════ */
+.instance-meta-item {
+    position: relative;
+    background: linear-gradient(135deg, rgba(35, 72, 200, 0.12) 0%, rgba(35, 72, 200, 0.03) 100%);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: 2px solid var(--blue);
+    box-shadow: 0 0 15px rgba(35, 72, 200, 0.2);
+    animation: pulseGlowBorder 2s infinite alternate;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(1.02);
+}
+
+.instance-meta-item:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 25px rgba(35, 72, 200, 0.4);
+}
+
+.pulse-text {
+    color: var(--navy) !important;
+    font-size: 1.1rem !important;
+    font-weight: 800;
+    font-family: 'Syne', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.pulse-text .instance-number-highlight {
+    background: var(--blue);
+    color: #ffffff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    box-shadow: 0 0 10px rgba(35, 72, 200, 0.4);
+    display: inline-block;
+    animation: uvicornBreathe 2s infinite alternate;
+}
+
+/* Badge flottant interactif "LIVE DEMO" */
+.live-monitor-badge {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 1000;
+    background: rgba(14, 27, 77, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 1.4rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(35, 72, 200, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'Syne', sans-serif;
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, floatBadge 4s ease-in-out infinite;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #10b981;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    animation: blinkStatus 0.8s infinite alternate;
+}
+
+.live-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.live-instance-display {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.live-instance-display strong {
+    color: #60a5fa;
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: rgba(96, 165, 250, 0.15);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.3rem;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+/* Animations */
+@keyframes uvicornBreathe {
+    from { transform: scale(1); box-shadow: 0 0 8px rgba(35, 72, 200, 0.4); }
+    to { transform: scale(1.05); box-shadow: 0 0 18px rgba(35, 72, 200, 0.7); }
+}
+
+@keyframes blinkStatus {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); box-shadow: 0 0 15px #10b981; }
+}
+
+@keyframes pulseGlowBorder {
+    from { border-color: rgba(35, 72, 200, 0.4); box-shadow: 0 0 10px rgba(35, 72, 200, 0.1); }
+    to { border-color: rgba(35, 72, 200, 1); box-shadow: 0 0 25px rgba(35, 72, 200, 0.4); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatBadge {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
