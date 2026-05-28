@@ -1,153 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cloud Foundry — Exposé Cloud Computing</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Figtree:ital,wght@0,300;0,400;0,600;1,300&display=swap"
-          rel="stylesheet"/>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Figtree:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-word">CF</div>
 
-<div class="bg-word">CF</div>
-
-<div class="page">
-
-    <!-- Top band -->
-    <header class="header-band">
-        <span class="band-label">IAI-Togo - TC2 A &nbsp;·&nbsp; 2025 – 2026</span>
+    <div class="page">
+      <!-- Top band -->
+      <header class="header-band">
+        <span class="band-label"
+          >IAI-Togo - TC2 A &nbsp;·&nbsp; 2025 – 2026</span
+        >
         <span class="band-pill">Cloud Computing</span>
-    </header>
+      </header>
 
-    <!-- Hero -->
-    <main>
+      <!-- Hero -->
+      <main>
         <div class="hero">
-            <div class="hero-content">
-                <span class="hero-eyebrow">Exposé — Cloud Computing - Mai 2026</span>
-                <h1 class="hero-title">
-                    Cloud<br>
-                    <span class="accent">Foundry</span>
-                </h1>
-                <div class="hero-subtitle">
-                    <span>TC2 A</span>
-                    <span class="dot"></span>
-                    <span>IAI-TOGO</span>
-                    <span class="dot"></span>
-                    <span>2025-2026</span>
-                </div>
-                <div class="hero-meta">
-                    <div class="hero-meta-item">
-                        <span class="meta-label">Cours</span>
-                        <span class="meta-value">Cloud Computing</span>
-                    </div>
-                    <div class="meta-sep"></div>
-                    <div class="hero-meta-item">
-                        <span class="meta-label">Techno</span>
-                        <span class="meta-value">Cloud Foundry</span>
-                    </div>
-                    <div class="meta-sep"></div>
-                    <div class="hero-meta-item">
-                        <span class="meta-label">Exposants</span>
-                        <span class="meta-value">03</span>
-                    </div>
-                </div>
+          <div class="hero-content">
+            <span class="hero-eyebrow"
+              >Exposé — Cloud Computing - Mai 2026</span
+            >
+            <h1 class="hero-title">
+              Cloud<br />
+              <span class="accent">Foundry</span>
+            </h1>
+            <div class="hero-subtitle">
+              <span>TC2 A</span>
+              <span class="dot"></span>
+              <span>IAI-TOGO</span>
+              <span class="dot"></span>
+              <span>2025-2026</span>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <span class="meta-label">Cours</span>
+                <span class="meta-value">Cloud Computing</span>
+              </div>
+              <div class="meta-sep"></div>
+              <div class="hero-meta-item">
+                <span class="meta-label">Techno</span>
+                <span class="meta-value">Cloud Foundry</span>
+              </div>
+              <div class="meta-sep"></div>
+              <div class="hero-meta-item">
+                <span class="meta-label">Exposants</span>
+                <span class="meta-value">03</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="logo-container">
+              <div class="logo-glow"></div>
+              <img
+                src="/static/images/cloud_foundry.png"
+                alt="Cloud Foundry Logo"
+                class="logo-img"
+              />
             </div>
 
-            <div class="hero-visual">
-                <div class="logo-container">
-                    <div class="logo-glow"></div>
-                    <img src="/static/images/cloud_foundry.png" alt="Cloud Foundry Logo" class="logo-img">
+            <div class="instance-dashboard">
+              <div class="db-header">
+                <div class="db-status">
+                  <span class="db-status-dot"></span>
+                  <span class="db-status-text">MONITEUR EN DIRECT</span>
                 </div>
-
-                <div class="instance-dashboard">
-                    <div class="db-header">
-                        <div class="db-status">
-                            <span class="db-status-dot"></span>
-                            <span class="db-status-text">MONITEUR EN DIRECT</span>
-                        </div>
-                        <div class="db-pill">Gorouter</div>
-                    </div>
-
-                    <div class="db-main">
-                        <span class="db-label">id de l'Instance actuelle</span>
-                        <div class="db-number">
-                            <span class="db-hash">#</span>
-                            <span class="db-value">{{ instance_index }}</span>
-                        </div>
-                    </div>
-
-                    <div class="db-metrics">
-                        <div class="db-metric">
-                            <span class="metric-name">Serveur</span>
-                            <span class="metric-val status-active">
-                                <span class="db-status-dot" style="animation-duration: 0.6s;"></span>En ligne
-                            </span>
-                        </div>
-                        <div class="db-metric">
-                            <span class="metric-name">Load-Balancing</span>
-                            <span class="metric-val">Round-Robin</span>
-                        </div>
-                    </div>
-
-                    <button class="db-refresh-btn" onclick="handleRefresh()">
-                        <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-                        </svg>
-                        <span>Reload la page</span>
-                    </button>
+                <div class="db-pill">Gorouter</div>
+              </div>
+              <div id="metrics-container">
+                <div class="db-main">
+                  <span class="db-label">id de l'Instance actuelle</span>
+                  <div class="db-number">
+                    <span class="db-hash">#</span>
+                    <span class="db-value">{{ instance_index }}</span>
+                  </div>
                 </div>
+                <div class="separator"></div>
+                <div class="db-main">
+                  <span class="db-label">Charge CPU actuelle</span>
+                  <div class="db-number">
+                    <span class="db-value">{{ cpu_usage }}</span>
+                    <span class="db-hash">%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="db-metrics">
+                <div class="db-metric">
+                  <span class="metric-name">Serveur</span>
+                  <span class="metric-val status-active">
+                    <span
+                      class="db-status-dot"
+                      style="animation-duration: 0.6s"
+                    ></span
+                    >En ligne
+                  </span>
+                </div>
+                <div class="db-metric">
+                  <span class="metric-name">Load-Balancing</span>
+                  <span class="metric-val">Round-Robin</span>
+                </div>
+              </div>
+
+              <button class="db-refresh-btn" onclick="handleRefresh()">
+                <svg
+                  class="refresh-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"
+                  />
+                </svg>
+                <span>Reload la page</span>
+              </button>
             </div>
+          </div>
         </div>
 
         <!-- Cards -->
         <div class="section">
-            <div class="section-header">
-                <span class="section-title">Les Exposants</span>
-                <div class="section-line"></div>
+          <div class="section-header">
+            <span class="section-title">Les Exposants</span>
+            <div class="section-line"></div>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <div class="card-avatar">
+                <span class="card-initials">AM</span>
+              </div>
+              <span class="card-name">ABOTSI</span>
+              <span class="card-firstname">Melike Ithiel</span>
+              <span class="card-tag">Exposant</span>
+              <span class="card-num">01</span>
             </div>
 
-            <div class="cards">
-
-                <div class="card">
-                    <div class="card-avatar"><span class="card-initials">AM</span></div>
-                    <span class="card-name">ABOTSI</span>
-                    <span class="card-firstname">Melike Ithiel</span>
-                    <span class="card-tag">Exposant</span>
-                    <span class="card-num">01</span>
-                </div>
-
-                <div class="card">
-                    <div class="card-avatar"><span class="card-initials">DS</span></div>
-                    <span class="card-name">DOTCHEVI</span>
-                    <span class="card-firstname">Stéfania</span>
-                    <span class="card-tag">Exposante</span>
-                    <span class="card-num">02</span>
-                </div>
-
-                <div class="card">
-                    <div class="card-avatar"><span class="card-initials">HS</span></div>
-                    <span class="card-name">HOUNOGBE</span>
-                    <span class="card-firstname">Somagnan</span>
-                    <span class="card-tag">Exposant</span>
-                    <span class="card-num">03</span>
-                </div>
-
+            <div class="card">
+              <div class="card-avatar">
+                <span class="card-initials">DS</span>
+              </div>
+              <span class="card-name">DOTCHEVI</span>
+              <span class="card-firstname">Stéfania</span>
+              <span class="card-tag">Exposante</span>
+              <span class="card-num">02</span>
             </div>
+
+            <div class="card">
+              <div class="card-avatar">
+                <span class="card-initials">HS</span>
+              </div>
+              <span class="card-name">HOUNOGBE</span>
+              <span class="card-firstname">Somagnan</span>
+              <span class="card-tag">Exposant</span>
+              <span class="card-num">03</span>
+            </div>
+          </div>
         </div>
-    </main>
+      </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+      <!-- Footer -->
+      <footer class="footer">
         <span class="footer-left">Exposé Cloud Computing</span>
         <span class="footer-right">Cloud Foundry — PaaS</span>
-    </footer>
+      </footer>
+    </div>
 
-</div>
-
-<script src="/static/js/main.js"></script>
-</body>
+    <script src="/static/js/main.js"></script>
+  </body>
 </html>

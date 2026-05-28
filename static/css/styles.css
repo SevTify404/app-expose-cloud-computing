@@ -749,6 +749,18 @@ body::before {
     align-items: center;
 }
 
+#metrics-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.separator {
+    width: 6px;
+    height: 50px;
+    background: var(--blue-line);
+    margin: 0 1.2rem;
+    border-radius: 4px;
+}
 .db-label {
     font-size: 0.55rem;
     font-weight: 600;
