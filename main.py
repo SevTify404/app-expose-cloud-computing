@@ -4,8 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
-from psutil import cpu_percent
-from utils import get_instance_index
+from utils import get_instance_index, get_cpu_usage
 
 app = FastAPI(title="Démo Exposé Cloud Foundry")
 
@@ -17,7 +16,7 @@ templates = Jinja2Templates(directory="static")
 async def root(request: Request):
     # CF_INSTANCE_INDEX automatiquement sur les serveurs Cf ")
     instance_index = get_instance_index()
-    cpu_usage = cpu_percent()
+    cpu_usage = get_cpu_usage()
     
     response = templates.TemplateResponse(
         request=request,
