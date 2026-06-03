@@ -33,6 +33,7 @@ async def root(request: Request, repo: BDWrapper = Depends(get_todo_db)):
     instance_index = get_instance_index()
     cpu_usage = get_cpu_usage()
     
+    todos_enabled = repo.ready
     response = templates.TemplateResponse(
         request=request,
         name="index.html",
@@ -40,6 +41,8 @@ async def root(request: Request, repo: BDWrapper = Depends(get_todo_db)):
             "instance_index": instance_index,
             "cpu_usage": cpu_usage,
             "todos": repo.list_todos(),
+            "todos_enabled": todos_enabled,
+            "todo_status_message": repo.fallback_reason if not todos_enabled else "Base de données prête pour la démo.",
         },
     )
 
@@ -55,17 +58,25 @@ async def favicon():
 
 @app.get("/api/todos")
 async def list_todos(repo: BDWrapper = Depends(get_todo_db)):
+    if not repo.ready:
+        raise HTTPException(status_code=503, detail="TODO indisponible tant que le service de base de données n’est pas bindé.")
     return {"todos": repo.list_todos()}
 
 
 @app.post("/api/todos", status_code=201)
 async def create_todo(payload: TodoCreate, repo: BDWrapper = Depends(get_todo_db)):
+    if not repo.ready:
+        raise HTTPException(status_code=503, detail="TODO indisponible tant que le service de base de données n’est pas bindé.")
     todo = repo.create_todo(payload.title, payload.description)
+    if "error" in todo:
+        raise HTTPException(status_code=503, detail="TODO indisponible pour le moment.")
     return todo
 
 
 @app.delete("/api/todos/{todo_id}", status_code=204)
 async def delete_todo(todo_id: str, repo: BDWrapper = Depends(get_todo_db)):
+    if not repo.ready:
+        raise HTTPException(status_code=503, detail="TODO indisponible tant que le service de base de données n’est pas bindé.")
     deleted = repo.delete_todo(todo_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Todo introuvable")

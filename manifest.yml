@@ -1,8 +1,8 @@
 ---
 applications:
   - name: expo-cloud-computing
-    memory: 128M
-    disk_quota: 256M
+    memory: 256M
+    disk_quota: 500M
     instances: 1
     command: python main.py
     buildpacks:

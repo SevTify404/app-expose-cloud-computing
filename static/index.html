@@ -145,7 +145,7 @@
             <div class="section-line"></div>
           </div>
 
-          <article class="todo-shell">
+          <article class="todo-shell {% if not todos_enabled %}todo-shell-disabled{% endif %}" data-todos-enabled="{{ 'true' if todos_enabled else 'false' }}">
             <div class="todo-intro">
               <div>
                 <p class="todo-kicker">Persistance de démo</p>
@@ -155,7 +155,10 @@
                   l'app indépendamment du lfecycle des instances
                 </p>
               </div>
-              <button id="open-todo-modal" class="todo-add-btn" type="button">
+              <div class="todo-status-pill {% if not todos_enabled %}todo-status-pill-warning{% endif %}">
+                {% if todos_enabled %}Base prête pour la démo{% else %}TODO désactivée — service DB non bindé{% endif %}
+              </div>
+              <button id="open-todo-modal" class="todo-add-btn" type="button" {% if not todos_enabled %}disabled{% endif %}>
                 <svg viewBox="0 0 24 24" class="todo-add-icon" aria-hidden="true">
                   <path d="M12 5v14M5 12h14" />
                 </svg>
@@ -164,6 +167,10 @@
             </div>
 
             <div class="todo-panel">
+              {% if not todos_enabled %}
+              <div class="todo-warning-banner">
+                <strong>Mode production sans binding DB :</strong> la démo TODO est temporairement désactivé</div>
+              {% endif %}
               <div class="todo-panel-head">
                 <span class="todo-panel-label">Tâches enregistrées</span>
                 <span id="todo-count" class="todo-count-pill">{{ todos|length }}</span>
@@ -186,7 +193,7 @@
                       <td class="todo-desc-cell">{{ todo.description or '—' }}</td>
                       <td class="todo-date-cell">{{ todo.created_at }}</td>
                       <td>
-                        <button class="todo-delete-btn" type="button" data-delete-id="{{ todo.id }}">Supprimer</button>
+                        <button class="todo-delete-btn" type="button" data-delete-id="{{ todo.id }}" {% if not todos_enabled %}disabled{% endif %}>Supprimer</button>
                       </td>
                     </tr>
                     {% endfor %}
@@ -214,16 +221,16 @@
               <form id="todo-form" class="todo-form">
                 <label class="todo-field">
                   <span>Titre</span>
-                  <input id="todo-title" name="title" type="text" maxlength="120" placeholder="jsp" required />
+                  <input id="todo-title" name="title" type="text" maxlength="120" placeholder="Ex. Valider le déploiement" required {% if not todos_enabled %}disabled{% endif %} />
                 </label>
                 <label class="todo-field">
                   <span>Description</span>
-                  <textarea id="todo-description" name="description" maxlength="250" rows="4" placeholder="js toujours p"></textarea>
+                  <textarea id="todo-description" name="description" maxlength="250" rows="4" placeholder="Ajoutez un contexte rapide pour la démo" {% if not todos_enabled %}disabled{% endif %}></textarea>
                 </label>
                 <p id="todo-form-message" class="todo-form-message" aria-live="polite"></p>
                 <div class="todo-modal-actions">
-                  <button type="button" id="cancel-todo-modal" class="todo-secondary-btn">Annuler</button>
-                  <button type="submit" class="todo-primary-btn">Enregistrer</button>
+                  <button type="button" id="cancel-todo-modal" class="todo-secondary-btn" {% if not todos_enabled %}disabled{% endif %}>Annuler</button>
+                  <button type="submit" class="todo-primary-btn" {% if not todos_enabled %}disabled{% endif %}>Enregistrer</button>
                 </div>
               </form>
             </div>

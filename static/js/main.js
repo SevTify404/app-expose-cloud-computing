@@ -11,9 +11,17 @@ const todoTableBody = document.getElementById('todo-table-body');
 const todoEmptyState = document.getElementById('todo-empty-state');
 const todoCount = document.getElementById('todo-count');
 const todoFormMessage = document.getElementById('todo-form-message');
+const todoShell = document.querySelector('.todo-shell');
 
 function setModalVisible(visible) {
   if (!todoModal) return;
+  const enabled = todoShell?.dataset.todosEnabled === 'true';
+  if (!enabled && visible) {
+    if (todoFormMessage) {
+      todoFormMessage.textContent = 'La TODO-list est désactivée tant que le service de base de données n’est pas bindé.';
+    }
+    return;
+  }
   todoModal.classList.toggle('hidden', !visible);
   todoModal.setAttribute('aria-hidden', String(!visible));
 
@@ -77,6 +85,14 @@ async function loadTodos() {
 
 async function createTodo(event) {
   event.preventDefault();
+
+  const enabled = todoShell?.dataset.todosEnabled === 'true';
+  if (!enabled) {
+    if (todoFormMessage) {
+      todoFormMessage.textContent = 'La TODO-list est désactivée tant que le service de base de données n’est pas bindé.';
+    }
+    return;
+  }
 
   if (!todoFormMessage) return;
 

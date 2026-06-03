@@ -437,6 +437,7 @@ body::before {
     justify-content: space-between;
     align-items: flex-end;
     gap: 1rem;
+    flex-wrap: wrap;
     background: rgba(255, 255, 255, 0.58);
     border: 1px solid rgba(35, 72, 200, 0.09);
     border-radius: 20px;
@@ -477,6 +478,25 @@ body::before {
     font-family: 'Syne', sans-serif;
 }
 
+.todo-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.38rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.todo-status-pill-warning {
+    background: rgba(245, 158, 11, 0.14);
+    color: #b45309;
+}
+
 .todo-add-btn {
     display: inline-flex;
     align-items: center;
@@ -507,6 +527,21 @@ body::before {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+.todo-warning-banner {
+    margin-bottom: 0.8rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 14px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.18);
+    color: #92400e;
+    font-size: 0.88rem;
+    line-height: 1.4;
+}
+
+.todo-shell-disabled {
+    opacity: 0.92;
 }
 
 .todo-panel {
@@ -606,6 +641,18 @@ body::before {
 
 .todo-delete-btn:hover {
     background: rgba(35, 72, 200, 0.12);
+}
+
+.todo-delete-btn:disabled,
+.todo-add-btn:disabled,
+.todo-primary-btn:disabled,
+.todo-secondary-btn:disabled,
+.todo-field input:disabled,
+.todo-field textarea:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 .todo-empty-state {
