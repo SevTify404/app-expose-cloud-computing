@@ -176,6 +176,97 @@
             </div>
           </div>
         </div>
+
+        <section class="section todo-section">
+          <div class="section-header">
+            <span class="section-title">TODO LIST</span>
+            <div class="section-line"></div>
+          </div>
+
+          <article class="todo-shell">
+            <div class="todo-intro">
+              <div>
+                <p class="todo-kicker">Persistance de démo</p>
+                <h2 class="todo-title">Tableau de tâches Cloud Foundry</h2>
+                <p class="todo-copy">
+                  Mini TODO-list pour illustrer la persistance des données dans 
+                  l'app indépendamment du lfecycle des instances
+                </p>
+              </div>
+              <button id="open-todo-modal" class="todo-add-btn" type="button">
+                <svg viewBox="0 0 24 24" class="todo-add-icon" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Ajouter
+              </button>
+            </div>
+
+            <div class="todo-panel">
+              <div class="todo-panel-head">
+                <span class="todo-panel-label">Tâches enregistrées</span>
+                <span id="todo-count" class="todo-count-pill">{{ todos|length }}</span>
+              </div>
+
+              <div class="todo-table-wrap">
+                <table class="todo-table">
+                  <thead>
+                    <tr>
+                      <th>Tâche</th>
+                      <th>Description</th>
+                      <th>Créée le</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="todo-table-body">
+                    {% for todo in todos %}
+                    <tr>
+                      <td class="todo-title-cell">{{ todo.title }}</td>
+                      <td class="todo-desc-cell">{{ todo.description or '—' }}</td>
+                      <td class="todo-date-cell">{{ todo.created_at }}</td>
+                      <td>
+                        <button class="todo-delete-btn" type="button" data-delete-id="{{ todo.id }}">Supprimer</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <p id="todo-empty-state" class="todo-empty-state" {% if todos %}hidden{% endif %}>Aucune TODO n’est encore enregistrée.</p>
+              </div>
+            </div>
+          </article>
+
+          <div id="todo-modal" class="todo-modal-backdrop hidden" aria-hidden="true">
+            <div class="todo-modal-card" role="dialog" aria-modal="true" aria-labelledby="todo-modal-title">
+              <div class="todo-modal-header">
+                <div>
+                  <p class="todo-kicker">Nouvelle tâche</p>
+                  <h3 id="todo-modal-title" class="todo-modal-title">Ajouter une TODO</h3>
+                </div>
+                <button id="close-todo-modal" class="todo-icon-btn" type="button" aria-label="Fermer la modale">
+                  <svg viewBox="0 0 24 24" class="todo-close-icon" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                  </svg>
+                </button>
+              </div>
+
+              <form id="todo-form" class="todo-form">
+                <label class="todo-field">
+                  <span>Titre</span>
+                  <input id="todo-title" name="title" type="text" maxlength="120" placeholder="Ex. Valider le déploiement" required />
+                </label>
+                <label class="todo-field">
+                  <span>Description</span>
+                  <textarea id="todo-description" name="description" maxlength="250" rows="4" placeholder="Ajoutez un contexte rapide pour la démo"></textarea>
+                </label>
+                <p id="todo-form-message" class="todo-form-message" aria-live="polite"></p>
+                <div class="todo-modal-actions">
+                  <button type="button" id="cancel-todo-modal" class="todo-secondary-btn">Annuler</button>
+                  <button type="submit" class="todo-primary-btn">Enregistrer</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
 
       <!-- Footer -->
