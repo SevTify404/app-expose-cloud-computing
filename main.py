@@ -4,7 +4,11 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
-from utils import get_instance_index, get_cpu_usage
+from utils import (
+    get_instance_index,
+    clear_cache_headers,
+    get_cpu_usage        
+)
 
 app = FastAPI(title="Démo Exposé Cloud Foundry")
 
@@ -24,10 +28,8 @@ async def root(request: Request):
         context={"instance_index": instance_index, "cpu_usage" : cpu_usage}
     )
 
-    # Clear des headers
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "0"
+    # Clear des headers pour remove le cache du navigateur 
+    clear_cache_headers(response)
     
     return response
 
