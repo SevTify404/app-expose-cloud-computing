@@ -124,6 +124,23 @@ async function deleteTodo(todoId) {
   }
 }
 
+function formaterDateSimple(dateIso) {
+  const date = new Date(dateIso);
+  
+  const options = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  };
+
+  // Remplace "à" par " à " si nécessaire selon le navigateur
+  return new Intl.DateTimeFormat('fr-FR', options)
+    .format(date)
+    .replace(',', '');
+}
+
 openTodoModalBtn?.addEventListener('click', () => setModalVisible(true));
 closeTodoModalBtn?.addEventListener('click', () => setModalVisible(false));
 cancelTodoModalBtn?.addEventListener('click', () => setModalVisible(false));

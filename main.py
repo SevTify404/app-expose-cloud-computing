@@ -1,18 +1,14 @@
 import os
-import uuid
-from datetime import datetime
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
-from utils import (
-    get_instance_index,
-    clear_cache_headers,
-    get_cpu_usage        
-)
+
+from db import BDWrapper, get_todo_db
+from utils import clear_cache_headers, get_cpu_usage, get_instance_index
 
 app = FastAPI(title="Démo Exposé Cloud Foundry")
 
@@ -31,11 +27,8 @@ class TodoItem(BaseModel):
     created_at: str
 
 
-TODO_DB: list[TodoItem] = []
-
-
 @app.get("/")
-async def root(request: Request):
+async def root(request: Request, repo: BDWrapper = Depends(get_todo_db)):
     # CF_INSTANCE_INDEX automatiquement sur les serveurs Cf ")
     instance_index = get_instance_index()
     cpu_usage = get_cpu_usage()
@@ -46,7 +39,7 @@ async def root(request: Request):
         context={
             "instance_index": instance_index,
             "cpu_usage": cpu_usage,
-            "todos": TODO_DB,
+            "todos": repo.list_todos(),
         },
     )
 
@@ -61,30 +54,23 @@ async def favicon():
 
 
 @app.get("/api/todos")
-async def list_todos():
-    return {"todos": TODO_DB}
+async def list_todos(repo: BDWrapper = Depends(get_todo_db)):
+    return {"todos": repo.list_todos()}
 
 
 @app.post("/api/todos", status_code=201)
-async def create_todo(payload: TodoCreate):
-    todo = TodoItem(
-        id=str(uuid.uuid4())[:8],
-        title=payload.title.strip(),
-        description=payload.description.strip(),
-        created_at=datetime.now().replace(microsecond=0).isoformat(timespec="seconds"),
-    )
-    TODO_DB.append(todo)
+async def create_todo(payload: TodoCreate, repo: BDWrapper = Depends(get_todo_db)):
+    todo = repo.create_todo(payload.title, payload.description)
     return todo
 
 
 @app.delete("/api/todos/{todo_id}", status_code=204)
-async def delete_todo(todo_id: str):
-    for index, todo in enumerate(TODO_DB):
-        if todo.id == todo_id:
-            del TODO_DB[index]
-            return Response(status_code=204)
+async def delete_todo(todo_id: str, repo: BDWrapper = Depends(get_todo_db)):
+    deleted = repo.delete_todo(todo_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Todo introuvable")
 
-    raise HTTPException(status_code=404, detail="Todo introuvable")
+    return Response(status_code=204)
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
