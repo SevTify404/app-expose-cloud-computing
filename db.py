@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime
 from typing import Any
 
-from sqlalchemy import String, Column, DateTime, create_engine
+from sqlalchemy import String, Column, DateTime, create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
@@ -74,7 +74,7 @@ class BDWrapper:
                 try:
                     engine = create_engine(postgres_uri, pool_pre_ping=True, future=True)
                     with engine.connect() as connection:
-                        connection.execute("SELECT 1")
+                        connection.execute(text("SELECT 1"))
                     self.mode = "postgres"
                     self.ready = True
                     return engine
