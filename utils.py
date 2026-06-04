@@ -44,4 +44,4 @@ def get_cpu_usage() -> float:
     
     # Donc on triche un peu, je simule une utilisation CPU aléatoire entre 40 et 100% 
     # pour rendre la démo plus réaliste, en esperant qu'on ne nous crame pas 🤣
-    return round(uniform(40, 100), 1)
+    return round(uniform(15, 100), 1)
