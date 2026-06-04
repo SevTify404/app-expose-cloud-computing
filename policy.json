@@ -1,10 +1,10 @@
 {
   "instance_min_count": 1,
   "instance_max_count": 5,
-  "schema-version": 1,
   "scaling_rules": [
     {
       "metric_type": "cpu",
+      "stat_window_secs": 300,
       "breach_duration_secs": 60,
       "threshold": 40,
       "operator": ">",
@@ -13,6 +13,7 @@
     },
     {
       "metric_type": "cpu",
+      "stat_window_secs": 300,
       "breach_duration_secs": 60,
       "threshold": 20,
       "operator": "<",
