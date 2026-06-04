@@ -83,6 +83,17 @@ async def delete_todo(todo_id: str, repo: BDWrapper = Depends(get_todo_db)):
 
     return Response(status_code=204)
 
+@app.get("/work")
+async def work():
+    total = 0
+
+    for i in range(30_000_000):
+        total += i
+
+    return {
+        "instance": get_instance_index(),
+        "result": total
+    }
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
